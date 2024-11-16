@@ -1,0 +1,55 @@
+2024/11/17 00:04:07 This is a log message
+2024/11/17 00:04:16 This is a log message
+2024/11/17 00:04:50 This is a log message
+2024/11/17 00:04:54 This is a log message
+2024/11/17 00:04:54 Creating a new container
+2024/11/17 00:08:17 Creating a new container
+2024/11/17 00:08:47 Showing help message
+2024/11/17 00:16:10 Creating a new container
+2024/11/17 00:16:10 Error running command: exit status 1
+2024/11/17 00:16:46 Creating a new container
+2024/11/17 00:16:46 Error running command: exit status 1
+2024/11/17 00:16:55 Creating a new container
+2024/11/17 00:24:40 Creating a new container
+2024/11/17 00:25:50 Creating a new container
+2024/11/17 00:25:50 total 28
+drwxr-xr-x 3 net0pyr net0pyr 4096 Nov 17 00:08 .
+drwxr-xr-x 4 net0pyr net0pyr 4096 Nov 16 23:38 ..
+-rw-r--r-- 1 net0pyr net0pyr  638 Nov 17 00:25 app.log
+-rw-r--r-- 1 net0pyr net0pyr  211 Nov 16 23:54 command.go
+drwxr-xr-x 2 net0pyr net0pyr 4096 Nov 16 23:46 commands
+-rw-r--r-- 1 net0pyr net0pyr   54 Nov 16 23:37 go.mod
+-rw-r--r-- 1 net0pyr net0pyr  389 Nov 17 00:08 main.go
+2024/11/17 00:26:12 Creating a new container
+2024/11/17 00:26:22 Creating a new container
+2024/11/17 00:26:22 Error running command: exit status 1
+2024/11/17 00:27:04 Creating a new container
+2024/11/17 00:27:04 Error running command: exit status 1
+2024/11/17 00:33:47 Creating a new container
+2024/11/17 00:35:47 Shell PID: 107915
+2024/11/17 00:36:00 Creating a new container
+2024/11/17 00:36:00 Error running the command: fork/exec /bin/bash: operation not permitted
+2024/11/17 00:36:50 Creating a new container
+2024/11/17 00:37:15 Shell PID: 113775
+2024/11/17 00:39:50 Creating a new container
+2024/11/17 00:40:28 Shell PID: 115585
+2024/11/17 00:41:34 Creating a new container
+2024/11/17 00:45:13 Shell PID: 116908
+2024/11/17 00:50:53 Creating a new container
+2024/11/17 00:51:06 Shell PID: 123647
+2024/11/17 00:55:05 Creating a new container
+2024/11/17 00:55:34 Error waiting for command: exit status 130
+2024/11/17 00:56:40 Creating a new container
+2024/11/17 00:56:43 Shell PID: 128828
+2024/11/17 00:58:56 Creating a new container
+2024/11/17 00:59:22 Error unmounting proc filesystem: no such file or directory
+2024/11/17 01:01:28 Creating a new container
+2024/11/17 01:01:50 Error unmounting proc filesystem: no such file or directory
+2024/11/17 01:03:02 Creating a new container
+2024/11/17 01:03:05 Error unmounting proc filesystem: no such file or directory
+2024/11/17 01:33:31 Creating a new container
+2024/11/17 01:33:59 Container setup complete
+2024/11/17 01:34:07 Creating a new container
+2024/11/17 01:34:07 Initializing container environment
+2024/11/17 01:34:07 Starting shell inside the container
+2024/11/17 01:34:07 Error running shell: fork/exec /bin/bash: no such file or directory
