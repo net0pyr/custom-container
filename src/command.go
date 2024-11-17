@@ -8,5 +8,6 @@ func init() {
 	commandMap = map[string]func(){
 		"create": commands.Create,
 		"help":   commands.Help,
+		"child":  commands.Child,
 	}
 }

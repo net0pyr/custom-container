@@ -53,3 +53,343 @@ drwxr-xr-x 2 net0pyr net0pyr 4096 Nov 16 23:46 commands
 2024/11/17 01:34:07 Initializing container environment
 2024/11/17 01:34:07 Starting shell inside the container
 2024/11/17 01:34:07 Error running shell: fork/exec /bin/bash: no such file or directory
+2024/11/17 20:55:44 Creating a new container
+2024/11/17 20:55:44 Error waiting for command: exit status 1
+2024/11/17 20:55:59 Creating a new container
+2024/11/17 20:55:59 Error waiting for command: exit status 1
+2024/11/17 20:56:21 Creating a new container
+2024/11/17 20:56:21 Running in child process
+2024/11/17 20:56:21 Error mounting proc filesystem: operation not permitted
+2024/11/17 20:56:21 Error waiting for command: exit status 1
+2024/11/17 20:56:45 Creating a new container
+2024/11/17 20:56:45 Error waiting for command: exit status 1
+2024/11/17 20:58:18 Creating a new container
+2024/11/17 20:58:18 Running in child process
+2024/11/17 20:58:18 Error mounting proc filesystem: operation not permitted
+2024/11/17 20:58:18 Error waiting for command: exit status 1
+2024/11/17 20:58:30 Creating a new container
+2024/11/17 20:58:30 Running in child process
+2024/11/17 20:58:30 Error mounting proc filesystem: operation not permitted
+2024/11/17 20:58:30 Error waiting for command: exit status 1
+2024/11/17 21:01:06 Creating a new container
+2024/11/17 21:01:06 Make directory
+2024/11/17 21:01:06 Started command
+2024/11/17 21:01:06 Running in child process
+2024/11/17 21:01:06 Error mounting proc filesystem: operation not permitted
+2024/11/17 21:01:06 Error waiting for command: exit status 1
+2024/11/17 21:15:15 Creating a new container
+2024/11/17 21:15:15 Make directory
+2024/11/17 21:15:15 Mounted proc filesystem
+2024/11/17 21:15:15 Started command
+2024/11/17 21:15:15 Running in child process
+2024/11/17 21:15:15 Error changing root directory: operation not permitted
+2024/11/17 21:15:15 Error waiting for command: exit status 1
+2024/11/17 21:16:41 Creating a new container
+2024/11/17 21:16:41 Make directory
+2024/11/17 21:16:41 Mounted proc filesystem
+2024/11/17 21:16:41 Finished changing root directory
+2024/11/17 21:16:41 Error starting the command: fork/exec /proc/self/exe: operation not permitted
+2024/11/17 21:18:01 Creating a new container
+2024/11/17 21:18:01 Make directory
+2024/11/17 21:18:01 Mounted proc filesystem
+2024/11/17 21:18:01 Started command
+2024/11/17 21:18:01 Error waiting for command: exit status 1
+2024/11/17 21:18:23 Creating a new container
+2024/11/17 21:18:23 Make directory
+2024/11/17 21:18:23 Started command
+2024/11/17 21:18:23 Error waiting for command: exit status 1
+2024/11/17 21:31:33 Creating a new container
+2024/11/17 21:31:33 Make directory
+2024/11/17 21:31:33 Started command
+2024/11/17 21:31:33 Running in child process
+2024/11/17 21:31:33 Finished changing root directory
+2024/11/17 21:31:33 Error mounting proc filesystem: no such file or directory
+2024/11/17 21:31:33 Error waiting for command: exit status 1
+2024/11/17 21:32:24 Creating a new container
+2024/11/17 21:32:24 Make directory
+2024/11/17 21:32:24 Started command
+2024/11/17 21:32:24 Running in child process
+2024/11/17 21:32:24 Finished changing root directory
+2024/11/17 21:32:24 Mounted proc filesystem
+2024/11/17 21:32:24 Error starting shell: fork/exec /bin/bash: no such file or directory
+2024/11/17 21:32:24 Error waiting for command: exit status 1
+2024/11/17 22:57:12 Creating a new container
+2024/11/17 22:57:12 Make directory
+2024/11/17 22:57:12 Copied bash and dependencies
+2024/11/17 22:57:12 Started command
+2024/11/17 22:57:12 Running in child process
+2024/11/17 22:57:12 Finished changing root directory
+2024/11/17 22:57:12 Mounted proc filesystem
+2024/11/17 22:57:12 Error starting shell: fork/exec /bin/bash: permission denied
+2024/11/17 22:57:12 Error waiting for command: exit status 1
+2024/11/17 23:01:24 Creating a new container
+2024/11/17 23:01:24 Make directory
+2024/11/17 23:01:24 Copied bash and dependencies
+2024/11/17 23:01:24 Started command
+2024/11/17 23:01:24 Running in child process
+2024/11/17 23:01:24 Finished changing root directory
+2024/11/17 23:01:24 Mounted proc filesystem
+2024/11/17 23:01:24 Error starting shell: fork/exec /bin/bash: permission denied
+2024/11/17 23:01:24 Error waiting for command: exit status 1
+2024/11/17 23:03:23 Creating a new container
+2024/11/17 23:03:23 Make directory
+2024/11/17 23:03:23 Copied bash and dependencies
+2024/11/17 23:03:23 Started command
+2024/11/17 23:03:23 Running in child process
+2024/11/17 23:03:23 Error changing root directory: operation not permitted
+2024/11/17 23:03:23 Error waiting for command: exit status 1
+2024/11/17 23:03:32 Creating a new container
+2024/11/17 23:03:32 Make directory
+2024/11/17 23:03:32 Copied bash and dependencies
+2024/11/17 23:03:32 Started command
+2024/11/17 23:03:32 Running in child process
+2024/11/17 23:03:32 Error changing root directory: operation not permitted
+2024/11/17 23:03:32 Error waiting for command: exit status 1
+2024/11/17 23:04:39 Creating a new container
+2024/11/17 23:04:39 Make directory
+2024/11/17 23:04:39 Copied bash and dependencies
+2024/11/17 23:04:39 Started command
+2024/11/17 23:04:39 Running in child process
+2024/11/17 23:04:39 Finished changing root directory
+2024/11/17 23:04:39 Mounted proc filesystem
+2024/11/17 23:04:39 Error starting shell: fork/exec /bin/bash: permission denied
+2024/11/17 23:04:39 Error waiting for command: exit status 1
+2024/11/17 23:06:19 Creating a new container
+2024/11/17 23:06:19 Make directory
+2024/11/17 23:06:19 Copied bash and dependencies
+2024/11/17 23:06:19 Started command
+2024/11/17 23:06:19 Running in child process
+2024/11/17 23:06:19 Finished changing root directory
+2024/11/17 23:06:19 Mounted proc filesystem
+2024/11/17 23:06:19 Error starting shell: fork/exec /bin/bash: no such file or directory
+2024/11/17 23:06:19 Error waiting for command: exit status 1
+2024/11/17 23:06:29 Creating a new container
+2024/11/17 23:06:29 Make directory
+2024/11/17 23:06:29 Copied bash and dependencies
+2024/11/17 23:06:29 Started command
+2024/11/17 23:06:29 Running in child process
+2024/11/17 23:06:29 Finished changing root directory
+2024/11/17 23:06:29 Mounted proc filesystem
+2024/11/17 23:06:29 Error starting shell: fork/exec /bin/bash: no such file or directory
+2024/11/17 23:06:29 Error waiting for command: exit status 1
+2024/11/17 23:09:44 Creating a new container
+2024/11/17 23:09:44 Make directory
+2024/11/17 23:09:44 Copied bash and dependencies
+2024/11/17 23:09:44 Started command
+2024/11/17 23:09:44 Running in child process
+2024/11/17 23:09:44 Finished changing root directory
+2024/11/17 23:09:44 Mounted proc filesystem
+2024/11/17 23:09:44 Error starting shell: fork/exec /bin/bash: no such file or directory
+2024/11/17 23:09:44 Error waiting for command: exit status 1
+2024/11/17 23:11:08 Creating a new container
+2024/11/17 23:11:08 Make directory
+2024/11/17 23:11:08 Copied bash and dependencies
+2024/11/17 23:11:08 Started command
+2024/11/17 23:11:08 Running in child process
+2024/11/17 23:11:08 Finished changing root directory
+2024/11/17 23:11:08 Mounted proc filesystem
+2024/11/17 23:11:08 Error running ldd on /bin/bash: exec: "ldd": executable file not found in $PATH
+2024/11/17 23:11:08 Error waiting for command: exit status 1
+2024/11/17 23:24:00 Creating a new container
+2024/11/17 23:24:00 Make directory
+2024/11/17 23:24:00 Copied bash and dependencies
+2024/11/17 23:24:00 Started command
+2024/11/17 23:24:00 Running in child process
+2024/11/17 23:24:00 Finished changing root directory
+2024/11/17 23:24:00 Mounted proc filesystem
+2024/11/17 23:24:00 Error running ldd on /bin/bash: exec: "ldd": executable file not found in $PATH
+2024/11/17 23:24:00 Error waiting for command: exit status 1
+2024/11/17 23:24:20 Creating a new container
+2024/11/17 23:24:20 Make directory
+2024/11/17 23:24:20 Copied bash and dependencies
+2024/11/17 23:24:20 Started command
+2024/11/17 23:24:20 Running in child process
+2024/11/17 23:24:20 Finished changing root directory
+2024/11/17 23:24:20 Mounted proc filesystem
+2024/11/17 23:24:20 Error running ldd on /bin/bash: open /dev/null: no such file or directory
+2024/11/17 23:24:20 Error waiting for command: exit status 1
+2024/11/17 23:28:19 Creating a new container
+2024/11/17 23:28:19 Make directory
+2024/11/17 23:28:19 Copied bash and dependencies
+2024/11/17 23:28:19 Started command
+2024/11/17 23:28:19 Running in child process
+2024/11/17 23:28:19 Finished changing root directory
+2024/11/17 23:28:19 Mounted proc filesystem
+2024/11/17 23:28:19 Error running ldd on /bin/bash: open /dev/null: permission denied
+2024/11/17 23:28:19 Error waiting for command: exit status 1
+2024/11/17 23:28:21 Creating a new container
+2024/11/17 23:28:21 Make directory
+2024/11/17 23:28:21 Error creating /dev/null: file exists
+2024/11/17 23:28:53 Creating a new container
+2024/11/17 23:28:53 Make directory
+2024/11/17 23:28:53 Error creating /dev/null: file exists
+2024/11/17 23:30:42 Creating a new container
+2024/11/17 23:30:42 Make directory
+2024/11/17 23:30:42 Copied bash and dependencies
+2024/11/17 23:30:42 Started command
+2024/11/17 23:30:42 Running in child process
+2024/11/17 23:30:42 Finished changing root directory
+2024/11/17 23:30:42 Mounted proc filesystem
+2024/11/17 23:30:42 Error running ldd on /bin/bash: open /dev/null: permission denied
+2024/11/17 23:30:42 Error waiting for command: exit status 1
+2024/11/17 23:33:11 Creating a new container
+2024/11/17 23:33:11 Make directory
+2024/11/17 23:33:11 Copied bash and dependencies
+2024/11/17 23:33:11 Started command
+2024/11/17 23:33:11 Running in child process
+2024/11/17 23:33:11 Finished changing root directory
+2024/11/17 23:33:11 Mounted proc filesystem
+2024/11/17 23:33:11 Error running ldd on /bin/bash: open /dev/null: permission denied
+2024/11/17 23:33:11 Error waiting for command: exit status 1
+2024/11/17 23:33:18 Creating a new container
+2024/11/17 23:33:18 Make directory
+2024/11/17 23:33:18 Copied bash and dependencies
+2024/11/17 23:33:18 Started command
+2024/11/17 23:33:18 Running in child process
+2024/11/17 23:33:18 Finished changing root directory
+2024/11/17 23:33:18 Mounted proc filesystem
+2024/11/17 23:33:18 Error running ldd on /bin/bash: open /dev/null: permission denied
+2024/11/17 23:33:18 Error waiting for command: exit status 1
+2024/11/18 00:33:24 Creating a new container
+2024/11/18 00:33:24 Make directory
+2024/11/18 00:33:24 Copied bash and dependencies
+2024/11/18 00:33:24 Started command
+2024/11/18 00:33:24 Running in child process
+2024/11/18 00:33:24 Finished changing root directory
+2024/11/18 00:33:24 Mounted proc filesystem
+2024/11/18 00:33:24 Error starting shell: fork/exec /bin/bash: no such file or directory
+2024/11/18 00:33:24 Error waiting for command: exit status 1
+2024/11/18 00:59:09 Creating isolated parent process...
+2024/11/18 00:59:09 Inside isolated process...
+2024/11/18 00:59:09 Running child process inside isolated system...
+2024/11/18 00:59:09 Error running child process: exec: "bash": executable file not found in $PATH
+2024/11/18 01:00:02 Creating isolated parent process...
+2024/11/18 01:00:02 Inside isolated process...
+2024/11/18 01:01:37 Creating isolated parent process...
+2024/11/18 01:01:37 Inside isolated process...
+2024/11/18 01:01:37 Setting up new root...
+2024/11/18 01:07:23 Creating isolated parent process...
+2024/11/18 01:07:23 Inside isolated process...
+2024/11/18 01:07:23 Setting up new root...
+2024/11/18 01:07:50 Error copying /usr: exit status 1
+2024/11/18 01:15:10 Creating isolated parent process...
+2024/11/18 01:15:10 Inside isolated process...
+2024/11/18 01:15:10 Setting up new root...
+2024/11/18 01:15:10 Error copying /bin: exit status 1
+2024/11/18 01:15:10 Finishing...
+2024/11/18 01:15:10 Error unmounting proc: invalid argument
+2024/11/18 01:16:43 Creating isolated parent process...
+2024/11/18 01:16:43 Inside isolated process...
+2024/11/18 01:16:43 Setting up new root...
+2024/11/18 01:16:43 Error copying /bin: exit status 1
+2024/11/18 01:16:43 Finishing...
+2024/11/18 01:16:43 Error unmounting proc: invalid argument
+2024/11/18 01:20:50 Creating isolated parent process...
+2024/11/18 01:20:50 Inside isolated process...
+2024/11/18 01:20:50 Setting up new root...
+2024/11/18 01:20:50 Error copying /bin: exit status 1
+2024/11/18 01:20:50 Finishing...
+2024/11/18 01:20:50 Error unmounting proc: invalid argument
+2024/11/18 01:21:35 Creating isolated parent process...
+2024/11/18 01:21:35 Inside isolated process...
+2024/11/18 01:21:35 Setting up new root...
+2024/11/18 01:21:42 Mounting proc...
+2024/11/18 01:21:42 Running child process inside isolated system...
+2024/11/18 01:21:42 Error running child process: fork/exec /usr/bin/bash: no such file or directory
+2024/11/18 01:21:42 Finishing...
+2024/11/18 01:21:42 Error unmounting proc: no such file or directory
+2024/11/18 01:22:21 Creating isolated parent process...
+2024/11/18 01:22:21 Inside isolated process...
+2024/11/18 01:22:21 Setting up new root...
+2024/11/18 01:22:35 Error copying /lib: exit status 1
+2024/11/18 01:22:35 Finishing...
+2024/11/18 01:22:35 Error unmounting proc: invalid argument
+2024/11/18 01:23:08 Creating isolated parent process...
+2024/11/18 01:23:08 Inside isolated process...
+2024/11/18 01:23:08 Setting up new root...
+2024/11/18 01:23:16 Mounting proc...
+2024/11/18 01:23:16 Running child process inside isolated system...
+2024/11/18 01:23:16 Error running child process: fork/exec /usr/bin/bash: no such file or directory
+2024/11/18 01:23:16 Finishing...
+2024/11/18 01:23:16 Error unmounting proc: no such file or directory
+2024/11/18 01:33:34 Creating isolated parent process...
+2024/11/18 01:33:34 Inside isolated process...
+2024/11/18 01:33:34 Setting up new root...
+2024/11/18 01:33:50 Error copying /lib32: exit status 1
+2024/11/18 01:33:50 Finishing...
+2024/11/18 01:33:50 Error removing new root directory: directory not empty
+2024/11/18 01:36:12 Creating isolated parent process...
+2024/11/18 01:36:12 Inside isolated process...
+2024/11/18 01:36:12 Setting up new root...
+2024/11/18 01:36:12 Error copying bash: open /tmp/container/bin/bash: no such file or directory
+2024/11/18 01:36:12 Finishing...
+2024/11/18 01:36:12 Error unmounting proc: invalid argument
+2024/11/18 01:37:02 Creating isolated parent process...
+2024/11/18 01:37:02 Inside isolated process...
+2024/11/18 01:37:02 Setting up new root...
+2024/11/18 01:37:02 Mounting proc...
+2024/11/18 01:37:02 Running child process inside isolated system...
+2024/11/18 01:37:02 Error running child process: fork/exec /bin/bash: permission denied
+2024/11/18 01:37:02 Finishing...
+2024/11/18 01:37:02 Error unmounting proc: no such file or directory
+2024/11/18 01:37:29 Creating isolated parent process...
+2024/11/18 01:37:59 Creating isolated parent process...
+2024/11/18 01:37:59 Inside isolated process...
+2024/11/18 01:37:59 Setting up new root...
+2024/11/18 01:37:59 Mounting proc...
+2024/11/18 01:37:59 Running child process inside isolated system...
+2024/11/18 01:37:59 Error running child process: fork/exec /bin/bash: permission denied
+2024/11/18 01:37:59 Finishing...
+2024/11/18 01:37:59 Error unmounting proc: no such file or directory
+2024/11/18 01:39:09 Creating isolated parent process...
+2024/11/18 01:39:09 Inside isolated process...
+2024/11/18 01:39:09 Setting up new root...
+2024/11/18 01:39:09 Mounting proc...
+2024/11/18 01:39:09 Running child process inside isolated system...
+2024/11/18 01:39:09 Error running child process: fork/exec /bin/bash: permission denied
+2024/11/18 01:39:09 Finishing...
+2024/11/18 01:39:09 Error unmounting proc: no such file or directory
+2024/11/18 01:42:41 Creating isolated parent process...
+2024/11/18 01:42:41 Inside isolated process...
+2024/11/18 01:42:41 Setting up new root...
+2024/11/18 01:42:41 Mounting proc...
+2024/11/18 01:42:41 Running child process inside isolated system...
+2024/11/18 01:42:56 Error running child process: exit status 127
+2024/11/18 01:42:56 Finishing...
+2024/11/18 01:42:56 Error unmounting proc: no such file or directory
+2024/11/18 01:43:39 Creating isolated parent process...
+2024/11/18 01:43:39 Inside isolated process...
+2024/11/18 01:43:39 Setting up new root...
+2024/11/18 01:43:39 Mounting proc...
+2024/11/18 01:43:39 Running child process inside isolated system...
+2024/11/18 01:44:15 Error running child process: exit status 127
+2024/11/18 01:44:15 Finishing...
+2024/11/18 01:44:15 Error unmounting proc: no such file or directory
+2024/11/18 01:44:48 Creating isolated parent process...
+2024/11/18 01:44:48 Inside isolated process...
+2024/11/18 01:44:48 Setting up new root...
+2024/11/18 01:44:48 Mounting proc...
+2024/11/18 01:44:48 Running child process inside isolated system...
+2024/11/18 01:45:07 Error running child process: exit status 126
+2024/11/18 01:45:07 Finishing...
+2024/11/18 01:45:07 Error unmounting proc: no such file or directory
+2024/11/18 01:45:09 Creating isolated parent process...
+2024/11/18 01:45:09 Inside isolated process...
+2024/11/18 01:45:09 Setting up new root...
+2024/11/18 01:45:09 Mounting proc...
+2024/11/18 01:45:09 Running child process inside isolated system...
+2024/11/18 01:45:55 Finishing...
+2024/11/18 01:45:55 Error unmounting proc: no such file or directory
+2024/11/18 01:48:13 Creating isolated parent process...
+2024/11/18 01:48:13 Inside isolated process...
+2024/11/18 01:48:13 Setting up new root...
+2024/11/18 01:48:13 Error copying /bin/cd: stat /bin/cd: no such file or directory
+2024/11/18 01:48:13 Finishing...
+2024/11/18 01:48:13 Error unmounting proc: invalid argument
+2024/11/18 01:48:59 Creating isolated parent process...
+2024/11/18 01:48:59 Inside isolated process...
+2024/11/18 01:48:59 Setting up new root...
+2024/11/18 01:48:59 Mounting proc...
+2024/11/18 01:48:59 Running child process inside isolated system...
+2024/11/18 01:50:03 Finishing...
+2024/11/18 01:50:03 Error unmounting proc: no such file or directory
