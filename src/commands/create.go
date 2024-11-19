@@ -1,14 +1,13 @@
 package commands
 
 import (
-	"fmt"
-	"io"
 	"log"
 	"os"
 	"os/exec"
-	"path/filepath"
-	"strings"
 	"syscall"
+
+	"github.com/net0pyr/custom-container/commands/creatingModule"
+	"golang.org/x/sys/unix"
 )
 
 func Create() {
@@ -26,6 +25,65 @@ func Create() {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
+	newRoot := "/tmp/container"
+	if err := os.MkdirAll(newRoot+"/proc", 0755); err != nil {
+		log.Println("Error creating new root:", err)
+		return
+	}
+	if err := os.MkdirAll(newRoot+"/bin", 0755); err != nil {
+		log.Println("Error creating new root:", err)
+		return
+	}
+	if err := os.MkdirAll(newRoot+"/usr/bin", 0755); err != nil {
+		log.Println("Error creating new root:", err)
+		return
+	}
+	if err := os.MkdirAll(newRoot+"/root", 0755); err != nil {
+		log.Println("Error creating new root:", err)
+		return
+	}
+	if err := os.MkdirAll(newRoot+"/dev", 0755); err != nil {
+		log.Println("Error creating new root:", err)
+		return
+	}
+	if err := os.MkdirAll(newRoot+"/etc", 0755); err != nil {
+		log.Println("Error creating new root:", err)
+		return
+	}
+	filePasswd, err := os.OpenFile(newRoot+"/etc/passwd", os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println("Error creating passwd file:", err)
+		return
+	}
+	if _, err = filePasswd.WriteString("root:x:0:0:root:/root:/bin/bash\n"); err != nil {
+		log.Println("Error writing to passwd file:", err)
+		return
+	}
+	fileDNS, err := os.OpenFile(newRoot+"/etc/resolv.conf", os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println("Error creating resolv.conf file:", err)
+		return
+	}
+	if _, err = fileDNS.WriteString("nameserver 8.8.8.8\nnameserver 1.1.1.1\n"); err != nil {
+		log.Println("Error writing to resolv.conf file:", err)
+		return
+	}
+	defer filePasswd.Close()
+	defer finish(newRoot)
+
+	if err := os.Remove(newRoot + "/dev/null"); err != nil && !os.IsNotExist(err) {
+		log.Println("Error remove device file:", err)
+	}
+
+	if err := syscall.Mknod(newRoot+"/dev/null", syscall.S_IFCHR|0666, int(unix.Mkdev(1, 3))); err != nil {
+		log.Println("Error create device file:", err)
+	}
+
+	if err := os.Chmod(newRoot+"/dev/null", 0666); err != nil {
+		log.Println("Error setting permissions for /dev/null:", err)
+		return
+	}
+
 	log.Println("Creating isolated parent process...")
 	if err := cmd.Run(); err != nil {
 		log.Println("Error creating parent process:", err)
@@ -37,25 +95,14 @@ func Child() {
 	log.Println("Inside isolated process...")
 
 	newRoot := "/tmp/container"
-	if err := os.MkdirAll(newRoot+"/proc", 0700); err != nil {
-		log.Println("Error creating new root:", err)
-		return
-	}
-	if err := os.MkdirAll(newRoot+"/bin", 0700); err != nil {
-		log.Println("Error creating new root:", err)
-		return
-	}
-	defer finish(newRoot)
 
 	log.Println("Setting up new root...")
 
-	// Список команд для копирования
-	commands := []string{"/bin/bash", "/bin/ps", "/bin/ls", "/bin/whoami"}
+	commands := []string{"/bin/bash", "/bin/ps", "/bin/ls", "/bin/whoami", "/usr/bin/ping", "/usr/bin/cat", "/usr/bin/ip", "/usr/bin/nsenter"}
 
-	// Копирование команд и их зависимостей
 	for _, cmd := range commands {
 		dest := newRoot + cmd
-		if err := copyFile(cmd, dest); err != nil {
+		if err := creatingModule.CopyFile(cmd, dest); err != nil {
 			log.Printf("Error copying %s: %v\n", cmd, err)
 			return
 		}
@@ -63,7 +110,7 @@ func Child() {
 			log.Printf("Error setting permissions for %s: %v\n", dest, err)
 			return
 		}
-		if err := copyDependencies(cmd, newRoot); err != nil {
+		if err := creatingModule.CopyDependencies(cmd, newRoot); err != nil {
 			log.Printf("Error copying dependencies for %s: %v\n", cmd, err)
 			return
 		}
@@ -85,8 +132,12 @@ func Child() {
 		return
 	}
 
-	// Создаем дочерний процесс
-	cmd := exec.Command("/bin/bash") // Например, запускаем bash
+	if err := os.Setenv("PATH", "/bin:/usr/bin"); err != nil {
+		log.Println("Error setting PATH:", err)
+		return
+	}
+
+	cmd := exec.Command("/bin/bash")
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -98,67 +149,8 @@ func Child() {
 	}
 }
 
-func copyFile(src, dst string) error {
-	sourceFileStat, err := os.Stat(src)
-	if err != nil {
-		return err
-	}
-
-	if !sourceFileStat.Mode().IsRegular() {
-		return fmt.Errorf("%s is not a regular file", src)
-	}
-
-	source, err := os.Open(src)
-	if err != nil {
-		return err
-	}
-	defer source.Close()
-
-	destination, err := os.Create(dst)
-	if err != nil {
-		return err
-	}
-	defer destination.Close()
-
-	_, err = io.Copy(destination, source)
-	return err
-}
-
-func copyDependencies(binary, newRoot string) error {
-	cmd := exec.Command("ldd", binary)
-	output, err := cmd.Output()
-	if err != nil {
-		return err
-	}
-
-	lines := strings.Split(string(output), "\n")
-	for _, line := range lines {
-		fields := strings.Fields(line)
-		for _, field := range fields {
-			if strings.HasPrefix(field, "/") {
-				dest := filepath.Join(newRoot, field)
-				if err := os.MkdirAll(filepath.Dir(dest), 0755); err != nil {
-					return err
-				}
-				if err := copyFile(field, dest); err != nil {
-					return err
-				}
-				if err := os.Chmod(dest, 0755); err != nil {
-					return err
-				}
-			}
-		}
-	}
-	return nil
-}
-
 func finish(dir string) {
 	log.Println("Finishing...")
-
-	if err := syscall.Unmount(dir+"/proc", 0); err != nil {
-		log.Println("Error unmounting proc:", err)
-		return
-	}
 
 	if err := os.RemoveAll(dir); err != nil {
 		log.Println("Error removing new root directory:", err)
