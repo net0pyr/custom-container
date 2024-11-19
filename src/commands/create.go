@@ -61,15 +61,15 @@ func Create() {
 		log.Println("Error writing to passwd file:", err)
 		return
 	}
-	// fileDNS, err := os.OpenFile(newRoot+"/etc/resolv.conf", os.O_CREATE|os.O_WRONLY, 0644)
-	// if err != nil {
-	// 	log.Println("Error creating resolv.conf file:", err)
-	// 	return
-	// }
-	// if _, err = fileDNS.WriteString("nameserver 192.168.1.1\n"); err != nil {
-	// 	log.Println("Error writing to resolv.conf file:", err)
-	// 	return
-	// }
+	fileDNS, err := os.OpenFile(newRoot+"/etc/resolv.conf", os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println("Error creating resolv.conf file:", err)
+		return
+	}
+	if _, err = fileDNS.WriteString("nameserver 192.168.1.1\n"); err != nil {
+		log.Println("Error writing to resolv.conf file:", err)
+		return
+	}
 	defer filePasswd.Close()
 	defer finish(newRoot)
 
@@ -100,89 +100,18 @@ func Create() {
 
 	log.Println("Child PID:", pid)
 
-	HOST_IP := "192.168.1.123"
-	CONTAINER_PID := pid
-	CONTAINER_IP := "192.168.1.124"
-	SUBNET := "192.168.1.0/24"
-
-	// Создание пары интерфейсов veth
-	if err := runCommand("ip", "link", "add", "veth-host", "type", "veth", "peer", "name", "veth-container"); err != nil {
-		fmt.Println("Error creating veth pair:", err)
+	cmdNetworkScript := exec.Command("/bin/bash", "networkScript.sh", pid)
+	cmdNetworkScript.Stdout = nil
+	cmdNetworkScript.Stderr = nil
+	if err := cmdNetworkScript.Run(); err != nil {
+		log.Println("Error running network script:", err)
 		return
-	}
-
-	// Поднятие интерфейса на хосте
-	if err := runCommand("ip", "link", "set", "veth-host", "up"); err != nil {
-		fmt.Println("Error setting veth-host up:", err)
-		return
-	}
-	if err := runCommand("ip", "addr", "add", fmt.Sprintf("%s/24", HOST_IP), "dev", "veth-host"); err != nil {
-		fmt.Println("Error adding IP address to veth-host:", err)
-		return
-	}
-
-	// Перемещение интерфейса контейнера в сетевой namespace контейнера
-	if err := runCommand("ip", "link", "set", "veth-container", "netns", CONTAINER_PID); err != nil {
-		fmt.Println("Error moving veth-container to container namespace:", err)
-		return
-	}
-
-	// Настройка интерфейса в контейнере
-	if err := runCommand("nsenter", "--net=/proc/"+CONTAINER_PID+"/ns/net", "ip", "link", "set", "veth-container", "up"); err != nil {
-		fmt.Println("Error setting veth-container up in container:", err)
-		return
-	}
-	if err := runCommand("nsenter", "--net=/proc/"+CONTAINER_PID+"/ns/net", "ip", "addr", "add", fmt.Sprintf("%s/24", CONTAINER_IP), "dev", "veth-container"); err != nil {
-		fmt.Println("Error adding IP address to veth-container in container:", err)
-		return
-	}
-	if err := runCommand("nsenter", "--net=/proc/"+CONTAINER_PID+"/ns/net", "ip", "route", "add", "default", "via", HOST_IP); err != nil {
-		fmt.Println("Error adding default route in container:", err)
-		return
-	}
-
-	// Проверка и настройка маршрутизации и NAT на хосте
-	output, err := commandOutput("iptables", "-t", "nat", "-L", "POSTROUTING")
-	if err != nil {
-		fmt.Println("Error checking iptables rules:", err)
-		return
-	}
-	if !strings.Contains(output, fmt.Sprintf("MASQUERADE  all  --  %s", SUBNET)) {
-		if err := runCommand("iptables", "-t", "nat", "-A", "POSTROUTING", "-s", SUBNET, "-j", "MASQUERADE"); err != nil {
-			fmt.Println("Error setting up NAT:", err)
-			return
-		}
-	}
-
-	output, err = commandOutput("sysctl", "net.ipv4.ip_forward")
-	if err != nil {
-		fmt.Println("Error checking IP forwarding:", err)
-		return
-	}
-	if !strings.Contains(output, "net.ipv4.ip_forward = 1") {
-		if err := runCommand("sysctl", "-w", "net.ipv4.ip_forward=1"); err != nil {
-			fmt.Println("Error enabling IP forwarding:", err)
-			return
-		}
 	}
 
 	if err := cmd.Wait(); err != nil {
 		log.Println("Error waiting for parent process:", err)
 		return
 	}
-}
-
-func runCommand(command string, args ...string) error {
-	cmd := exec.Command(command, args...)
-	cmd.Stdout = nil
-	cmd.Stderr = nil
-	return cmd.Run()
-}
-
-func commandOutput(command string, args ...string) (string, error) {
-	cmd := exec.Command(command, args...)
-	output, err := cmd.Output()
-	return string(output), err
 }
 
 func getPID(processName string) (string, error) {
