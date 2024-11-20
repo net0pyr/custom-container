@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"strings"
 	"syscall"
 
 	"github.com/net0pyr/custom-container/commands/creatingModule"
@@ -15,7 +14,8 @@ import (
 func Create() {
 	cmd := exec.Command("/proc/self/exe", "child")
 	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID | syscall.CLONE_NEWNS | syscall.CLONE_NEWIPC | syscall.CLONE_NEWUSER | syscall.CLONE_NEWNET,
+		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID | syscall.CLONE_NEWNS | syscall.CLONE_NEWIPC |
+			syscall.CLONE_NEWUSER | syscall.CLONE_NEWNET | syscall.CLONE_NEWCGROUP,
 		UidMappings: []syscall.SysProcIDMap{
 			{ContainerID: 0, HostID: os.Getuid(), Size: 1},
 		},
@@ -71,6 +71,7 @@ func Create() {
 		return
 	}
 	defer filePasswd.Close()
+	defer fileDNS.Close()
 	defer finish(newRoot)
 
 	if err := os.Remove(newRoot + "/dev/null"); err != nil && !os.IsNotExist(err) {
@@ -92,11 +93,7 @@ func Create() {
 		return
 	}
 
-	pid, err := getPID("child")
-	if err != nil {
-		log.Println("Error getting PID:", err)
-		return
-	}
+	pid := fmt.Sprintf("%d", cmd.Process.Pid)
 
 	log.Println("Child PID:", pid)
 
@@ -108,32 +105,36 @@ func Create() {
 		return
 	}
 
+	cgroupPath := "/sys/fs/cgroup/custom-container"
+	cgroupController := cgroupPath + "/cgroup.subtree_control"
+	cgroupPids := cgroupPath + "/cgroup.procs"
+	cgroupCPU := cgroupPath + "/cpu.max"
+	cgroupMemory := cgroupPath + "/memory.max"
+
+	if err := os.MkdirAll(cgroupPath, 0755); err != nil {
+		log.Fatalln("Error creating cgroup pids:", err)
+	}
+
+	if err := os.WriteFile(cgroupController, []byte("+memory +cpu"), 0644); err != nil {
+		log.Fatalln("Error writing to cgroup controller:", err)
+	}
+
+	if err := os.WriteFile(cgroupCPU, []byte("25000 100000"), 0644); err != nil {
+		log.Fatalln("Error writing to cgroup CPU:", err)
+	}
+
+	if err := os.WriteFile(cgroupMemory, []byte("2000000000"), 0644); err != nil {
+		log.Fatalln("Error writing to cgroup memory:", err)
+	}
+
+	if err := os.WriteFile(cgroupPids, []byte(pid), 0644); err != nil {
+		log.Fatalln("Error writing to cgroup pids:", err)
+	}
+
 	if err := cmd.Wait(); err != nil {
 		log.Println("Error waiting for parent process:", err)
 		return
 	}
-}
-
-func getPID(processName string) (string, error) {
-	// Выполнение команды ps -aux | grep processName
-	cmd := exec.Command("sh", "-c", fmt.Sprintf("ps -aux | grep %s", processName))
-	output, err := cmd.Output()
-	if err != nil {
-		return "", err
-	}
-
-	// Парсинг вывода команды
-	lines := strings.Split(string(output), "\n")
-	for _, line := range lines {
-		if strings.Contains(line, processName) && !strings.Contains(line, "grep") {
-			fields := strings.Fields(line)
-			if len(fields) > 1 {
-				return fields[1], nil
-			}
-		}
-	}
-
-	return "", fmt.Errorf("process not found")
 }
 
 func Child() {
